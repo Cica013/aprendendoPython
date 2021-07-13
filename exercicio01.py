@@ -4,6 +4,8 @@ perguntas = {
     'pergunta 1': {
         'pergunta': 'Quanto é 2+2? ',
         'respostas':{
+            'a': '1',
+            'b': '4',
 
         }
     }
