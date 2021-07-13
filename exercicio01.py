@@ -6,6 +6,7 @@ perguntas = {
         'respostas':{
             'a': '1',
             'b': '4',
+            'c': '7',
 
         }
     }
