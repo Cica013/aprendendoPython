@@ -6,11 +6,12 @@ Exercício
 
 Crie uma função que encontrao primeiro duplicado considerando o segundo número como a duplicação.
 Retorne a duplicação considerada. Requisitos: A ordem do número duplicado é considerada a partir da
-segunda ocorrência do número, ou seja, o número duplixado em si. Exemplo:
+segunda ocorrência do número, ou seja, o número duplicado em si. Exemplo:
 [1, 2, 3, ->3<-, 2, 1] -> 1, 2 e 3 são duplicados (retorne 3) [1, 2, 3, 4, 5, 6] -> Retorne -1 (não tem duplicados)
 
 Se não encontrar duplicados na lista, retorne -1
 """
+
 
 lista_de_listas_de_inteiros = [
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -26,3 +27,29 @@ lista_de_listas_de_inteiros = [
     [5, 3, 1, 8, 5, 7, 1, 8, 8, 7],
     [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
 ]
+
+
+from time import sleep
+nums = []
+duplicados = []
+contador = 0
+for c in lista_de_listas_de_inteiros:
+    nums.clear()
+    duplicados.clear()
+    print(f'Verificando a lista {contador+1}:  {c}')
+    contador += 1
+    sleep(2)
+    print()
+    for i in c:
+        if i in nums:
+            duplicados.append(i)
+        nums.append(i)
+    if duplicados:
+        print(f'O primeiro número duplicado encontrado foi: {duplicados[0]}')
+        print(f'Os números duplicados encontrados foram: {set(duplicados)}')
+        print()
+    else:
+        print('-1. Não foram encontrados números duplicados.')
+        print()
+    sleep(2)
+
