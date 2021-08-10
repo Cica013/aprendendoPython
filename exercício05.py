@@ -10,7 +10,7 @@ lista_b      = [1, 2, 3, 4]
 ================================= resultado
 lista_soma = [2, 4, 6, 8]
 """
-lista_a = [1, 2, 3, 4, 5, 6, 7, ]
+lista_a = [11, 2, 3, 40, 5, 6, 7, ]
 lista_b = [1, 2, 3, 4]
 
 lista_soma = [x + y for x, y in zip(lista_a, lista_b)]
