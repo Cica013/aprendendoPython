@@ -10,6 +10,7 @@ Faça uma lista de tarefas com as seguintes opções:
 
 """
 cont = 1
+verifica_pop = []
 while True:
     tarefas = []
     tarefa = input('Deseja fazer esta tarefa sim(S) ou não(N)? ').strip().upper()
@@ -47,13 +48,19 @@ while True:
                 continue
             desfaz = input('Deseja desfazer? (S) ou (N): ').strip().upper()
             if desfaz == 'S':
+                verifica_pop = tarefas[-1]
                 tarefas.pop()
                 print(tarefas)
             elif desfaz == 'N':
                 pass
             refazer = input('Deseja refazer? (S) ou (N): ').strip().upper()
-
-
+            if refazer == 'S':
+                if verifica_pop not in tarefas:
+                    tarefas.append(f'Tarefas {cont}')
+                else:
+                    print('Não é possível refazer o que não foi desfeito.')
+            elif refazer == 'N':
+                pass
     elif tarefa == 'N':
         print(tarefas)
         print('Fim!')
