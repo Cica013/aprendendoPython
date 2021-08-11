@@ -9,62 +9,52 @@ Faça uma lista de tarefas com as seguintes opções:
     ['Tarefa 1', 'Tarefa 2'] <- Refazer
 
 """
-cont = 1
-verifica_pop = []
+todo_list = []
+redo_list = []
+
+
+def add_list(todo, todo_list):
+    todo_list.append(todo)
+
+
+def show_do(todo_list):
+    print()
+    print('Lista: ', end='')
+    print(todo_list)
+    print()
+
+
+def undo(todo_list, redo_list):
+    print()
+    if not todo_list:
+        print()
+        print('Não há o que remover.')
+        print()
+        return
+    last_todo = todo_list.pop()
+    redo_list.append(last_todo)
+
+
+def redo(redo_list, todo_list):
+    if not redo_list:
+        print()
+        print('Nada a refazer')
+        print()
+        return
+    last_redo = redo_list.pop()
+    todo_list.append(last_redo)
+
+
 while True:
-    tarefas = []
-    tarefa = input('Deseja fazer esta tarefa sim(S) ou não(N)? ').strip().upper()
-    if tarefa == 'S':
-        print('Feita!')
-        tarefas.append(f'Tarefa {cont}')
-        print(tarefas)
-        print()
-        while True:
-            escolha = input('Deseja adicionar tarefa sim(S) ou não(N)? ').strip().upper()
-            if escolha == 'S':
-                tarefa_1 = input('Deseja fazer esta tarefa sim(S) ou não(N)? ').strip().upper()
-                if tarefa_1 == 'S':
-                    cont += 1
-                    print('Feita!')
-                    tarefas.append(f'Tarefa {cont}')
-                    print(tarefas)
-                    print()
-                elif tarefa_1 == 'N':
-                    print(tarefas)
-                    print('Fim!')
-                    break
-                else:
-                    print('Você digitou algo errado ai... vamos voltar.')
-                    print()
-                    continue
-            elif escolha == 'N':
-                print(tarefas)
-                print('Acabou aqui!')
-                print()
-                break
-            else:
-                print('Você digitou algo errado ai... vamos voltar.')
-                print()
-                continue
-            desfaz = input('Deseja desfazer? (S) ou (N): ').strip().upper()
-            if desfaz == 'S':
-                verifica_pop = tarefas[-1]
-                tarefas.pop()
-                print(tarefas)
-            elif desfaz == 'N':
-                pass
-            refazer = input('Deseja refazer? (S) ou (N): ').strip().upper()
-            if refazer == 'S':
-                if verifica_pop not in tarefas:
-                    tarefas.append(f'Tarefas {cont}')
-                else:
-                    print('Não é possível refazer o que não foi desfeito.')
-            elif refazer == 'N':
-                pass
-    elif tarefa == 'N':
-        print(tarefas)
-        print('Fim!')
-        print()
-        break
-    else:
-        print('Você digitou algo errado ai... Vamos voltar')
+    todo = input('Digite a tarefa ou ls, undo, redo: ').strip().lower()
+    if todo == 'ls':
+        show_do(todo_list)
+        continue
+    elif todo == 'undo':
+        undo(todo_list, redo_list)
+        continue
+    elif todo == 'redo':
+        redo(redo_list, todo_list)
+        continue
+    add_list(todo, todo_list)
+
