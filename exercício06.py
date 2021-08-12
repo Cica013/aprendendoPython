@@ -38,7 +38,7 @@ def undo(todo_list, redo_list):
 def redo(redo_list, todo_list):
     if not redo_list:
         print()
-        print('Nada a refazer')
+        print('Nada a o que refazer')
         print()
         return
     last_redo = redo_list.pop()
