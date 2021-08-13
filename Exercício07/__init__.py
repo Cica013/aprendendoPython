@@ -3,4 +3,4 @@
 
 import cnpj
 
-cnpj.valida_cnpj('04.252.011/0001-10')
+cnpj.valida_cnpj('71.506.168/0001-11')
