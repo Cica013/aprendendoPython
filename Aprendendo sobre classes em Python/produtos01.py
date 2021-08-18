@@ -1,5 +1,8 @@
 class Notebook:
+    # atributo da classe
     fonte = 'fonte de 30W'
+
+    # método
     def __init__(self, nome_notebook, marca, processador, ram, tipo_armazenamento, qtd_armazenamento, gpu, monitor,
                  cor, ligar_desligar=False, ):
         self.nome_notebook = nome_notebook
@@ -13,6 +16,7 @@ class Notebook:
         self.cor = cor
         self.ligar_desligar = ligar_desligar
 
+    # método
     def ligar(self):
         if self.ligar_desligar:
             print('Já estou ligado!')
@@ -20,6 +24,7 @@ class Notebook:
         print('Estou ligando...')
         self.ligar_desligar = True
 
+    # método
     def desligar(self):
         if not self.ligar_desligar:
             print('Já estou desligado!')
@@ -27,6 +32,7 @@ class Notebook:
         print('Desligando...')
         self.ligar_desligar = False
 
+    # método
     def exibir_especificacoes(self):
         print(
             '\033[1;4;3;32mEspecificações técnicas:\033[m \n'
