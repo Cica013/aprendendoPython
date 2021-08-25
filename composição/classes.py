@@ -14,6 +14,7 @@ class Cliente:
     def __del__(self):
         print(f'{self.nome} FOI APAGADO.')
 
+
 class Endereco:
     def __init__(self, cidade, estado):
         self.cidade = cidade
