@@ -4,7 +4,7 @@ class Pessoa:
         self.idade = idade
         self.nomeClasse = self.__class__.__name__
 
-    def falar(self,):
+    def falar(self, ):
         print(f'{self.nomeClasse} está falando...')
 
 
@@ -17,7 +17,8 @@ class Aluno(Pessoa):
     def estudar(self):
         print(f'{self.nomeClasse} estudando...')
 
+
 class ClienteVIP(Cliente):
     def falar(self):
+        super().falar()
         print('Outra coisa qualquer...')
-
