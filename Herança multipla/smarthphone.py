@@ -15,9 +15,9 @@ class Smarthphone(Eletronico, Logmixin):
             return
 
         if self._conectado:
-            error = f'{self._nome} Já está conectado.'
+            error = f'{self._nome} Já estava conectado.'
             print(error)
-            self.log_info(error)
+            self.log_error(error)
             return
 
         info = f'{self._nome} Está conectado!'
