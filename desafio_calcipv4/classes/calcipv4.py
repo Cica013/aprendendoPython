@@ -6,6 +6,8 @@ class CalcIpv4:
         self.mascara = mascara
         self.prefixo = prefixo
 
+        self._set_brodcast()
+
     @property
     def ip(self):
         return self._ip
@@ -34,6 +36,8 @@ class CalcIpv4:
 
         self._mascara = valor
         self._mascara_bin = self.ip_to_bin(valor)
+        self.prefixo = self._mascara_bin.count('1')
+
 
     @prefixo.setter
     def prefixo(self, valor):
@@ -49,7 +53,7 @@ class CalcIpv4:
 
         self._prefixo = valor
         self._mascara_bin = (valor * '1').ljust(32, '0')
-        print(self._mascara_bin)
+        self.mascara = self._bin_to_ip(self._mascara_bin)
 
     @staticmethod
     def _valida_ip(ip):
@@ -65,6 +69,15 @@ class CalcIpv4:
         blocos = ip.split('.')
         blocos_binarios = [bin(int(x))[2:].zfill(8) for x in blocos]
         return ''.join(blocos_binarios)
+
+    @staticmethod
+    def bin_to_ip(ip):
+        n = 8
+        blocos = [str(int(ip[i:n+i], 2)) for i in range(0, 32, n)]
+        return '.'.join(blocos)
+
+    def _set_brodcast(self):
+        print(self.mascara)
 
 
 
