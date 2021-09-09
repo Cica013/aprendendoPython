@@ -1,5 +1,6 @@
 import re
 
+
 class CalcIpv4:
     def __init__(self, ip, mascara=None, prefixo=None):
         self.ip = ip
@@ -7,6 +8,21 @@ class CalcIpv4:
         self.prefixo = prefixo
 
         self._set_brodcast()
+        self._set_rede()
+
+
+    @property
+    def rede(self):
+        return self._rede
+
+    @property
+    def brodcast(self):
+        return self._brodcast
+
+    @property
+    def numero_ips(self):
+        return self._get_numero_ips()
+
 
     @property
     def ip(self):
@@ -25,6 +41,7 @@ class CalcIpv4:
         if not self._valida_ip(valor):
             raise ValueError('IP inválido.')
         self._ip = valor
+        self._ip_bin = self.ip_to_bin(valor)
 
     @mascara.setter
     def mascara(self, valor):
@@ -36,8 +53,8 @@ class CalcIpv4:
 
         self._mascara = valor
         self._mascara_bin = self.ip_to_bin(valor)
-        self.prefixo = self._mascara_bin.count('1')
-
+        if not hasattr(self, 'prefixo'):
+            self.prefixo = self._mascara_bin.count('1')
 
     @prefixo.setter
     def prefixo(self, valor):
@@ -53,7 +70,9 @@ class CalcIpv4:
 
         self._prefixo = valor
         self._mascara_bin = (valor * '1').ljust(32, '0')
-        self.mascara = self._bin_to_ip(self._mascara_bin)
+
+        if not hasattr(self, 'mascara'):
+            self.mascara = self._bin_to_ip(self._mascara_bin)
 
     @staticmethod
     def _valida_ip(ip):
@@ -71,13 +90,22 @@ class CalcIpv4:
         return ''.join(blocos_binarios)
 
     @staticmethod
-    def bin_to_ip(ip):
+    def _bin_to_ip(ip):
         n = 8
-        blocos = [str(int(ip[i:n+i], 2)) for i in range(0, 32, n)]
+        blocos = [str(int(ip[i:n + i], 2)) for i in range(0, 32, n)]
         return '.'.join(blocos)
 
     def _set_brodcast(self):
-        print(self.mascara)
+        hosts_bits = 32 - self.prefixo
+        self._brodcast_bin = self._ip_bin[:self.prefixo] + (hosts_bits * '1')
+        self._brodcast = self._bin_to_ip(self._brodcast_bin)
+        return self._brodcast
 
+    def _set_rede(self):
+        hosts_bits = 32 - self.prefixo
+        self._rede_bin = self._ip_bin[:self.prefixo] + (hosts_bits * '1')
+        self._rede = self._bin_to_ip(self._rede_bin)
+        return self._rede
 
-
+    def _get_numero_ips(self):
+        return 2 ** (32 - self.prefixo)
