@@ -7,7 +7,7 @@ from email.mime.image import MIMEImage
 import smtplib
 
 meu_email = 'tunicodanado174@gmail.com'
-minha_senha = ''
+minha_senha = 'Tunicodanado10#'
 
 with open('template.html', 'r') as html:
     template = Template(html.read())
