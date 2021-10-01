@@ -17,6 +17,7 @@ class Calculadora(QMainWindow):
         self.display.setStyleSheet(
             '* {background: white; color: #000; font-size: 30px;}'
         )
+
         self.display.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
 
         self.add_btn(QPushButton('7'), 1, 0, 1, 1)
